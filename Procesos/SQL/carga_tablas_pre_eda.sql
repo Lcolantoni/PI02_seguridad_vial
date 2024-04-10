@@ -1,0 +1,74 @@
+DROP DATABASE IF EXISTS Accidentes;
+
+CREATE DATABASE IF NOT EXISTS Accidentes;
+
+USE Accidentes;
+
+
+DROP TABLE IF EXISTS comunas_pre_eda;
+
+CREATE TABLE IF NOT EXISTS comunas_pre_eda(
+COMUNA INT NOT NULL PRIMARY KEY,
+POBLACION2022 DECIMAL(6,3),
+CANT_LOCALIDADES INT
+);
+
+LOAD DATA INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.3\\Uploads\\comunas.csv'
+INTO TABLE Comunas_pre_eda
+FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+SELECT * FROM comunas_pre_eda;
+
+
+DROP TABLE IF EXISTS Homicidios_pre_eda;
+
+CREATE TABLE IF NOT EXISTS Homicidios_pre_eda(
+ID INT PRIMARY KEY,
+NUM_VICTIMAS INT,
+FECHA DATE,
+HORA TIME,
+HH FLOAT,
+TIPO_CALLE VARCHAR(256),
+CALLE VARCHAR(256),
+LUGAR_HECHO_NORM TEXT,
+COMUNA INT,
+LONGITUD DECIMAL(10,8),
+LATITU DECIMAL (10,8),
+VICTIMA VARCHAR (100),
+ACUSADO VARCHAR (100),
+SEXO VARCHAR(20),
+EDAD INT,
+ROL_VICTIMA VARCHAR(30)
+);
+
+LOAD DATA INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.3\\Uploads\\homicidios.csv'
+INTO TABLE Homicidios_pre_eda
+FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+SELECT * FROM Homicidios_pre_eda;
+
+
+CREATE TABLE Lesiones (
+    id VARCHAR(20),
+    n_victimas INT,
+    fecha DATE,
+    hora TIME,
+    franja_hora INT,
+    comuna INT,
+    tipo_calle VARCHAR(50),
+    direc_normalizada VARCHAR(255),
+    longitud FLOAT,
+    latitud FLOAT,
+    victima VARCHAR(50),
+    acusado VARCHAR(50),
+    gravedad VARCHAR(50)
+);
+
+LOAD DATA INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.3\\Uploads\\lesiones.csv'
+INTO TABLE lesiones
+FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+SELECT * FROM lesiones;
