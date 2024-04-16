@@ -50,20 +50,22 @@ IGNORE 1 ROWS;
 SELECT * FROM Homicidios_pre_eda;
 
 
-CREATE TABLE Lesiones (
-    id VARCHAR(20),
-    n_victimas INT,
-    fecha DATE,
-    hora TIME,
-    franja_hora INT,
-    comuna INT,
-    tipo_calle VARCHAR(50),
-    direc_normalizada VARCHAR(255),
-    longitud FLOAT,
-    latitud FLOAT,
-    victima VARCHAR(50),
-    acusado VARCHAR(50),
-    gravedad VARCHAR(50)
+DROP TABLE IF EXISTS Lesiones;
+
+CREATE TABLE IF NOT EXISTS Lesiones (
+    ID VARCHAR(20),
+    N_VICTIMAS INT,
+    FECHA DATE,
+    HORA TIME,
+    HH INT,
+    COMUNA INT,
+    TIPO_CALLE VARCHAR(50),
+    DIREC_NORMALIZADA VARCHAR(255),
+    LONGITUD FLOAT,
+    LATITUD FLOAT,
+    VICTIMA VARCHAR(50),
+    ACUDASO VARCHAR(50),
+    GRAVEDAD VARCHAR(50)
 );
 
 LOAD DATA INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.3\\Uploads\\lesiones.csv'
